@@ -28,4 +28,4 @@ app.get('/', index);
 // app.post('/api/fileanalyse', multer({dest: './uploads/'}).single('upload'), analyseFile);
 app.post('/api/fileanalyse', upload.single('upload'), analyseFile);
 
-app.listen(port, function(){console.log('listening on localhost port: ' + port)});
+app.listen(port);
