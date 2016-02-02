@@ -6,6 +6,9 @@ var app = express();
 app.set('views', (__dirname + '/views'));
 app.set('view engine', 'jade');
 
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
+
 
 function index(req, res) {
 	res.setHeader('Content-type', 'text/html');
@@ -22,6 +25,7 @@ function analyseFile(req, res) {
 
 app.get('/', index);
 
-app.post('/api/fileanalyse', multer({dest: './uploads/'}).single('upload'), analyseFile);
+// app.post('/api/fileanalyse', multer({dest: './uploads/'}).single('upload'), analyseFile);
+app.post('/api/fileanalyse', upload.single('upload'), analyseFile);
 
 app.listen(port, function(){console.log('listening on localhost port: ' + port)});
